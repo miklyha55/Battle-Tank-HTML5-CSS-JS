@@ -17,12 +17,7 @@ function Model() {
     
     getBody: function() {
       return body;
-    },
-    
-    pushBulletArr: function(bullet) {
-      arrBullets.push(enemy);
     }
-    
   }
 }
 
