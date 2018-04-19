@@ -90,7 +90,7 @@ function Tank(x, y, width, height) {
   var isPressY = false;
   var bullet;
   var tankLoopTimer;
-  var isCurrentBullet = true;
+  var isBulletLive = true;
   
   var isFocus = 1;
   var FPS = 60;
@@ -111,11 +111,11 @@ function Tank(x, y, width, height) {
   }
   
   obj.setCurrentBullet = function() {
-    isCurrentBullet = true;
+    isBulletLive = true;
   }
   
   obj.shoot = function() {
-    if(isCurrentBullet)  { 
+    if(isBulletLive)  { 
       elm.style.background = "red";
       bullet = new Bullet(vector, bulletX, bulletY, obj);
     
@@ -124,7 +124,7 @@ function Tank(x, y, width, height) {
         elm.style.background = "orange";
       }, 100);
     }
-    isCurrentBullet = false;
+    isBulletLive = false;
   }
   
   obj.getVector = function() {
@@ -268,19 +268,16 @@ function Enemy(tank,x, y, width, height, speed) {
   var obj = Object.create(tank);
   var vector = {x: x, y: y, width: width, height: height};
   var elm = document.createElement('div');
-  elm.style.width = vector.width +  "px";
-  elm.style.height = vector.height +  "px";
   var speedX = 0;
   var speedY = 0;
   var bullet;
-  
   var timerWay;
   var timerBullet;
   var timerLoop;
-  var isCurrentBullet = true;
+  var isBulletLive = true;
   
   obj.setCurrentBulletEnemy = function() {
-    isCurrentBullet = true;
+    isBulletLive = true;
   }
   
   obj.getElm = function() {
@@ -300,11 +297,11 @@ function Enemy(tank,x, y, width, height, speed) {
   }
   
   obj.shoot = function() {
-    if(isCurrentBullet || obj.getBody().width <= vector.x + vector.width && speedX == 1
+    if(isBulletLive || obj.getBody().width <= vector.x + vector.width && speedX == 1
     || 0 >= vector.x && speedX == -1 || obj.getBody().height <= vector.y + vector.height
     && speedY == 1 || 0 >= vector.y && speedY == -1) {
      bullet = new Bullet(vector, speedX, speedY, null, obj);
-     isCurrentBullet = false;
+     isBulletLive = false;
     }
   }
   
@@ -346,6 +343,8 @@ function Enemy(tank,x, y, width, height, speed) {
   
   elm.setAttribute("id", "enemy");
   elm.style.transform = "translate3d("+ vector.x +"px ,"+ vector.y +"px ,"+ 0 +")";
+  elm.style.width = vector.width +  "px";
+  elm.style.height = vector.height +  "px";
   
   document.getElementById("body").appendChild(elm);
 
