@@ -1,7 +1,7 @@
 // Code goes here
 function Model() {
   var arrEnemys = [];
-  var body = {width: 400, height:400, x: 0, y: 0};
+  var body = {width: 400, height:400};
   return {
     getArrEnemys: function() {
       return arrEnemys;
@@ -23,7 +23,7 @@ function Model() {
 
 var model = new Model();
 
-function Bullet(elm, vector, x, y, tank = null, enemy = null) {
+function Bullet(vector, x, y, tank = null, enemy = null) {
   var obj = Object.create(model);
   var vectorBullet = {x: vector.x + vector.width/2, y: vector.y + vector.height/2};
   var speed = 4;
@@ -117,7 +117,7 @@ function Tank(x, y, width, height) {
   obj.shoot = function() {
     if(isCurrentBullet)  { 
       elm.style.background = "red";
-      bullet = new Bullet(elm, vector, bulletX, bulletY, obj);
+      bullet = new Bullet(vector, bulletX, bulletY, obj);
     
     
       setTimeout(function(){
@@ -303,7 +303,7 @@ function Enemy(tank,x, y, width, height, speed) {
     if(isCurrentBullet || obj.getBody().width <= vector.x + vector.width && speedX == 1
     || 0 >= vector.x && speedX == -1 || obj.getBody().height <= vector.y + vector.height
     && speedY == 1 || 0 >= vector.y && speedY == -1) {
-     bullet = new Bullet(elm, vector, speedX, speedY, null, obj);
+     bullet = new Bullet(vector, speedX, speedY, null, obj);
      isCurrentBullet = false;
     }
   }
@@ -462,4 +462,3 @@ function StartGame() {
   var enemy10 = new Enemy(tank,195, 150, 5, 5, 2);
   
 }
-  
