@@ -1,0 +1,37 @@
+/* Styles go here */
+#tank {
+  position: absolute;
+  background-color: orange;
+}
+
+.bullet {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 5px;
+  height: 5px;
+  background-color: white;
+}
+
+#body {
+  width: 400px;
+  height: 400px;
+  background-color: gray;
+}
+#enemy {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
+
+ #body h3 {
+   padding-top: 130px;
+   text-align: center;
+   margin:0;
+ }
+ 
+#body button {
+  display: block;
+  margin: 20px auto;
+}
